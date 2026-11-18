@@ -77,3 +77,158 @@ button:hover {
   font-weight: bold;
   cursor: pointer;
 }
+.dashboard {
+  padding: 20px;
+  text-align: left;
+}
+
+.topbar {
+  background: #12345a;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.topbar h1 {
+  color: white;
+  font-size: 22px;
+  margin: 0;
+  letter-spacing: normal;
+}
+
+.topbar nav {
+  display: flex;
+  gap: 10px;
+}
+
+.topbar nav button {
+  background: transparent;
+  border: 1px solid white;
+  padding: 8px 16px;
+  font-size: 15px;
+}
+
+.topbar nav button:hover,
+.topbar nav button.active {
+  background: white;
+  color: #12345a;
+}
+
+.panel {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.panel h2 {
+  color: #12345a;
+  margin-bottom: 15px;
+}
+
+.inline-form {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.inline-form input,
+.inline-form select {
+  flex: 1;
+  min-width: 180px;
+  width: auto;
+}
+
+.inline-form button {
+  padding: 13px 24px;
+}
+
+button.secondary {
+  background: #888;
+}
+
+button.secondary:hover {
+  background: #666;
+}
+
+button.small {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+button.danger {
+  background: #c0392b;
+}
+
+button.danger:hover {
+  background: #96281b;
+}
+
+.error {
+  color: #c0392b;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  color: #222;
+}
+
+th {
+  background: #eef2f7;
+  color: #12345a;
+}
+
+td.actions {
+  display: flex;
+  gap: 8px;
+}
+
+td.empty {
+  text-align: center;
+  color: #666;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.status.present {
+  background: #e3f4e8;
+  color: #1e7b3a;
+}
+
+.status.absent {
+  background: #fbe4e2;
+  color: #c0392b;
+}
+
+.status.late {
+  background: #fdf1dc;
+  color: #a86500;
+}
+
+@media (max-width: 700px) {
+  .panel {
+    padding: 15px;
+    overflow-x: auto;
+  }
+}

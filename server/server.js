@@ -11,10 +11,12 @@ app.use(express.json());
 // Import routes
 const studentRoutes = require("./routes/studentRoutes");
 const attendanceRoutes = require("./routes/attendanceRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 // Register routes
 app.use("/api/students", studentRoutes);
 app.use("/api/attendance", attendanceRoutes);
+app.use("/api/auth", authRoutes);
 
 // Homepage
 app.get("/", (req, res) => {
