@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { login, register } from "../api";
 
 function Login({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -17,7 +18,7 @@ function Login({ onLogin }) {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     if (formData.password.length < 8) {
@@ -25,7 +26,13 @@ function Login({ onLogin }) {
       return;
     }
 
-    onLogin();
+    try {
+      const data = isLogin ? await login(formData) : await register(formData);
+      localStorage.setItem("token", data.token);
+      onLogin(data.user);
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
   return (

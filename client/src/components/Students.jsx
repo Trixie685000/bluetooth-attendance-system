@@ -23,7 +23,9 @@ function Students() {
   }
 
   useEffect(() => {
-    loadStudents();
+    getStudents()
+      .then(setStudents)
+      .catch((err) => setError(err.message));
   }, []);
 
   function handleChange(event) {
@@ -115,7 +117,7 @@ function Students() {
         <button type="submit">{editingId ? "Save" : "Add"}</button>
 
         {editingId && (
-          <button type="button" className="secondary" onClick={resetForm}>
+          <button type="button" onClick={resetForm}>
             Cancel
           </button>
         )}
@@ -152,7 +154,7 @@ function Students() {
                   Edit
                 </button>
                 <button
-                  className="small danger"
+                  className="small"
                   onClick={() => handleDelete(student.id)}
                 >
                   Delete

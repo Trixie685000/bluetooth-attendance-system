@@ -16,21 +16,21 @@ function Attendance() {
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState("");
 
-  async function loadData() {
+  async function loadRecords() {
     try {
-      const [attendanceData, studentData] = await Promise.all([
-        getAttendance(),
-        getStudents()
-      ]);
-      setRecords(attendanceData);
-      setStudents(studentData);
+      setRecords(await getAttendance());
     } catch (err) {
       setError(err.message);
     }
   }
 
   useEffect(() => {
-    loadData();
+    Promise.all([getAttendance(), getStudents()])
+      .then(([attendanceData, studentData]) => {
+        setRecords(attendanceData);
+        setStudents(studentData);
+      })
+      .catch((err) => setError(err.message));
   }, []);
 
   function handleChange(event) {
@@ -55,7 +55,7 @@ function Attendance() {
       }
 
       resetForm();
-      loadData();
+      loadRecords();
     } catch (err) {
       setError(err.message);
     }
@@ -77,7 +77,7 @@ function Attendance() {
 
     try {
       await deleteAttendance(id);
-      loadData();
+      loadRecords();
     } catch (err) {
       setError(err.message);
     }
@@ -129,7 +129,7 @@ function Attendance() {
         <button type="submit">{editingId ? "Save" : "Record"}</button>
 
         {editingId && (
-          <button type="button" className="secondary" onClick={resetForm}>
+          <button type="button" onClick={resetForm}>
             Cancel
           </button>
         )}
@@ -162,17 +162,13 @@ function Attendance() {
               <td>{record.student.matricule}</td>
               <td>{record.course}</td>
               <td>{new Date(record.date).toLocaleString()}</td>
-              <td>
-                <span className={`status ${record.status.toLowerCase()}`}>
-                  {record.status}
-                </span>
-              </td>
+              <td>{record.status}</td>
               <td className="actions">
                 <button className="small" onClick={() => handleEdit(record)}>
                   Edit
                 </button>
                 <button
-                  className="small danger"
+                  className="small"
                   onClick={() => handleDelete(record.id)}
                 >
                   Delete

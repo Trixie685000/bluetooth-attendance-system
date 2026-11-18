@@ -13,6 +13,20 @@ async function request(url, options = {}) {
   return data;
 }
 
+export function login(user) {
+  return request("/api/auth/login", {
+    method: "POST",
+    body: JSON.stringify(user)
+  });
+}
+
+export function register(user) {
+  return request("/api/auth/register", {
+    method: "POST",
+    body: JSON.stringify(user)
+  });
+}
+
 export function getStudents() {
   return request("/api/students");
 }

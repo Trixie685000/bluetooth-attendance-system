@@ -5,11 +5,16 @@ import Attendance from "./components/Attendance";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);
   const [page, setPage] = useState("students");
 
-  if (!loggedIn) {
-    return <Login onLogin={() => setLoggedIn(true)} />;
+  function handleLogout() {
+    localStorage.removeItem("token");
+    setUser(null);
+  }
+
+  if (!user) {
+    return <Login onLogin={setUser} />;
   }
 
   return (
@@ -17,6 +22,8 @@ function App() {
 
       <header className="topbar">
         <h1>Bluetooth Attendance System</h1>
+
+        <p>Welcome, {user.name}</p>
 
         <nav>
           <button
@@ -31,7 +38,7 @@ function App() {
           >
             Attendance
           </button>
-          <button onClick={() => setLoggedIn(false)}>Logout</button>
+          <button onClick={handleLogout}>Logout</button>
         </nav>
       </header>
 
