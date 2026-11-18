@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 const app = express();
@@ -17,6 +18,9 @@ const authRoutes = require("./routes/authRoutes");
 app.use("/api/students", studentRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/auth", authRoutes);
+
+// Serve the built React app
+app.use(express.static(path.join(__dirname, "../client/dist")));
 
 // Homepage
 app.get("/", (req, res) => {
