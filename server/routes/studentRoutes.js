@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const prisma = require("../prismaClient");
 
+// P2002 is the Prisma code for a unique field that already exists
+function isDuplicate(error) {
+    return error.code === "P2002";
+}
+
 // CREATE: Register a student
 router.post("/", async (req, res) => {
     try {
@@ -22,6 +27,12 @@ router.post("/", async (req, res) => {
             student
         });
     } catch (error) {
+        if (isDuplicate(error)) {
+            return res.status(400).json({
+                message: "A student with this email or matricule already exists"
+            });
+        }
+
         res.status(500).json({
             message: "Error registering student",
             error: error.message
@@ -77,6 +88,12 @@ router.put("/:id", async (req, res) => {
             student
         });
     } catch (error) {
+        if (isDuplicate(error)) {
+            return res.status(400).json({
+                message: "A student with this email or matricule already exists"
+            });
+        }
+
         res.status(500).json({ message: error.message });
     }
 });

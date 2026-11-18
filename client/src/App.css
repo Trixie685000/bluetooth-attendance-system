@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background: #eef2f7;
+  background: #f1f5f4;
 }
 
 .container {
@@ -28,7 +28,7 @@ body {
 }
 
 .form-box h1 {
-  color: #12345a;
+  color: #1d5c63;
   font-size: 25px;
   margin-bottom: 10px;
 }
@@ -59,7 +59,7 @@ select {
 }
 
 button {
-  background: #12345a;
+  background: #1d5c63;
   color: white;
   border: none;
   padding: 14px;
@@ -69,11 +69,11 @@ button {
 }
 
 button:hover {
-  background: #20558c;
+  background: #2a7f87;
 }
 
 .switch-text span {
-  color: #12345a;
+  color: #1d5c63;
   font-weight: bold;
   cursor: pointer;
 }
@@ -94,7 +94,7 @@ button:hover {
 }
 
 .topbar h1 {
-  color: #12345a;
+  color: #1d5c63;
   font-size: 25px;
   margin: 0 0 5px;
 }
@@ -115,7 +115,7 @@ button:hover {
 }
 
 .topbar nav button.active {
-  background: #20558c;
+  background: #2a7f87;
 }
 
 .panel h2 {
@@ -162,7 +162,7 @@ td {
 }
 
 th {
-  color: #12345a;
+  color: #1d5c63;
 }
 
 td.actions {

@@ -7,8 +7,7 @@ function Login({ onLogin }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
-    role: "student"
+    password: ""
   });
 
   function handleChange(event) {
@@ -76,17 +75,6 @@ function Login({ onLogin }) {
             onChange={handleChange}
             required
           />
-
-          {!isLogin && (
-            <select
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-            >
-              <option value="student">Student</option>
-              <option value="lecturer">Lecturer</option>
-            </select>
-          )}
 
           <button type="submit">
             {isLogin ? "Login" : "Register"}
