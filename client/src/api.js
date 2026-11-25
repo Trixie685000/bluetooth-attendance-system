@@ -1,5 +1,8 @@
+// Empty in dev (Vite proxy) and when the server serves the build; set on Vercel
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 async function request(url, options = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(API_URL + url, {
     headers: { "Content-Type": "application/json" },
     ...options
   });
